@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: web
+  name: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - image: image-registry.openshift-image-registry.svc:5000/openshift/httpd:latest
+          imagePullPolicy: Always
+          name: c1
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+            
